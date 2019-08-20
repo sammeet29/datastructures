@@ -1,3 +1,6 @@
+#ifndef LINKED_LISTH
+#define LINKED_LISTH
+
 typedef struct node{
 	struct node * Next;
 	int Data;
@@ -13,3 +16,5 @@ class Linked_List{
 	virtual void print_list();
 
 };
+
+#endif LINKED_LISTH

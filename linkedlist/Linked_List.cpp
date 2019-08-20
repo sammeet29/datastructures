@@ -5,6 +5,7 @@
 using namespace std;
 
 // Description	- add node to the start of list
+// Input 		- data of the node to be deleted
 // Return 		- true if successful, else false
 // Output		- None
 bool Linked_List::add_to_start(int data){
@@ -27,6 +28,7 @@ bool Linked_List::add_to_start(int data){
 }
 
 // Description	- delete 1st node with data = data
+// Input 		- data of the node to be deleted
 // Return 		- true if successful, else false
 // Output		- Node is deleted from the list 
 bool Linked_List::delete_node( int data){

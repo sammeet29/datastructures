@@ -34,48 +34,53 @@ bool Linked_List::add_to_start(int data){
 
 // Description  - delete 1st node with data = data
 // Input        - data of the node to be deleted
-// Return       - true if successful, else false
+// Return       - true if successful, false if node not found
+//                or the list is empty
 // Output       - Node is deleted from the list 
 bool Linked_List::delete_node( int data){
-    // return value, be a pessimist
-    bool rtn = false;
+    // return value, assume all will go correctly
+    bool rtn = true;
 
-    Node * prev = head;
-    Node * curr = head;
+    // if the list is empty return false
+    if(head == NULL){
+        rtn = false;
+    }else if(head->Data == data){
+        // else if the head has the same data
+        // delete head and make the next node head
+        Node * temp = this->head;
+        this->head = head->Next;
+        free(temp);
+    }else{
 
-    // if we need to delete the head node
-    if((head != NULL) && (head->Data == data)){
-        
-        // rearrange the linked list
-        curr = head;
-        head = head->Next;
+        // initialize the loop
+        Node * curr = head;
+        Node * prev = head;
+        bool not_found = true;
+        while(not_found || curr != NULL){
 
-        // skip the loop
-        rtn = true;
+            // if the data matches the current nodes data
+            if(curr->Data == data){
+                // delete the node
+                not_found = false;
+                prev->Next = curr->Next;
+                free(curr);
+            }
 
-        // delete node
-        free(curr);
-    }
-
-    while ((curr != NULL) && (!rtn)){
-
-        // if this is the node we are looking for
-        // delete the node and rearrange the list
-        if( curr->Data = data){ 
-            rtn = true;
-            prev->Next = curr->Next;
-            free(curr);
+            // Advance the loop
+            prev = curr;
+            curr = curr->Next;
         }
 
-        // advance loop
-        prev = curr;
-        curr = curr->Next;
+        // if node is still not found return false
+        if(not_found){
+            rtn = false;
+        } 
     }
 
     return (rtn);
 }
 
-// Description  - tells if the data is present in the list
+// Description  - Searches the list for a node.
 // Return       - true if node is present, else false
 // Output       - None
 bool Linked_List::is_present(int data){

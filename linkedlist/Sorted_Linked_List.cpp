@@ -123,8 +123,6 @@ virtual bool is_present(){
         }
     }
 
-    rtn = node_found;
-
-    return (rtn);
+    return (node_found);
 }
 
